@@ -1,13 +1,13 @@
-package com.inditex.price_api_demo;
+package com.inditex.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PriceApiDemoApplication {
+public class demoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PriceApiDemoApplication.class, args);
+		SpringApplication.run(demoApplication.class, args);
 	}
 
 }
