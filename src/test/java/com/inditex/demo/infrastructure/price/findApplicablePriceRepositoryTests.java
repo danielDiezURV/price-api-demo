@@ -1,4 +1,4 @@
-package com.inditex.demo.application.price;
+package com.inditex.demo.infrastructure.price;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -16,12 +16,12 @@ import com.inditex.demo.price.infrastructure.persistence.entity.PriceEntity;
 import com.inditex.demo.price.infrastructure.persistence.repository.PriceRepositoryImpl;
 import com.inditex.demo.price.infrastructure.persistence.repository.jpa.PriceJpaRepository;
 
-public class findApplicablePriceTests extends PriceApiDemoApplicationTests {
+public class findApplicablePriceRepositoryTests extends PriceApiDemoApplicationTests {
     
         private PriceJpaRepository priceJpaRepository;
         private PriceRepositoryImpl priceRepositoryimpl;
 
-        PriceEntity mockPrice() {
+        private PriceEntity mockPrice() {
                 return PriceEntity.builder()
                         .id(1L)
                         .brandId(1L)
@@ -36,13 +36,13 @@ public class findApplicablePriceTests extends PriceApiDemoApplicationTests {
         }
 
         @BeforeEach
-        void before() {
+        private void setUp() {
                 this.priceJpaRepository = mock(PriceJpaRepository.class);
                 this.priceRepositoryimpl = new PriceRepositoryImpl(priceJpaRepository);
         }
         
         @Test
-        void findApplicablePriceOK() {
+        public void findApplicablePriceOK() {
                 // Given
                 Long productId = 35455L;
                 Long brandId = 1L;
@@ -60,6 +60,7 @@ public class findApplicablePriceTests extends PriceApiDemoApplicationTests {
                 assertEquals(price.getProductId(), mockPrice().getProductId());
                 assertEquals(price.getPrice(), mockPrice().getPrice());
                 assertEquals(price.getCurrency(), mockPrice().getCurrency());
+
                 assertEquals(price.getProductId(), productId);
                 assertEquals(price.getBrandId(), brandId);
                 assertTrue(applicationDate.isAfter(price.getStartDate()) || applicationDate.isEqual(price.getStartDate()));
@@ -67,7 +68,7 @@ public class findApplicablePriceTests extends PriceApiDemoApplicationTests {
         }
 
         @Test
-        void findApplicablePriceNotFound() {
+        public void findApplicablePriceNotFound() {
                 // Given
                 Long productId = 35455L;
                 Long brandId = 1L;

@@ -7,10 +7,6 @@ public class PriceMapper {
 
     private static PriceMapper instance;
 
-    public static Price toPrice(PriceEntity get) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     private PriceMapper() {
     }
 
