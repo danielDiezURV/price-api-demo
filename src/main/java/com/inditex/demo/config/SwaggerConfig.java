@@ -14,7 +14,7 @@ public class SwaggerConfig {
         return new OpenAPI()
             .info(new Info()
                 .title("Price API")
-                .description("Price API")
+                .description("Price-API")
                 .version("1.0.0")
             );
     }
