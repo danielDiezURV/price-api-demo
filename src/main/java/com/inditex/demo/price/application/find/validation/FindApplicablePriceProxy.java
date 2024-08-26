@@ -12,7 +12,7 @@ import com.inditex.demo.price.application.find.exceptions.ExceptionControllerPri
 import com.inditex.demo.price.application.find.exceptions.ExceptionControllerPriceParamException;
 import com.inditex.demo.price.application.find.impl.FindApplicablePriceImpl;
 import com.inditex.demo.price.domain.dto.Price;
-import com.inditex.demo.shared.application.ApiResponse;
+import com.inditex.demo.shared.infrastructure.ApiResponse;
 
 @Service
 public class FindApplicablePriceProxy implements FindApplicablePrice {

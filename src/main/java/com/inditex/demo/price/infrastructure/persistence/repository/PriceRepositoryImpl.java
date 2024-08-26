@@ -1,10 +1,11 @@
 package com.inditex.demo.price.infrastructure.persistence.repository;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.inditex.demo.price.domain.dto.Price;
 import com.inditex.demo.price.domain.repository.PriceRepository;
@@ -24,8 +25,8 @@ public class PriceRepositoryImpl implements PriceRepository {
 
     @Override
     public Price findApplicablePrice(LocalDateTime applicationDate, Long productId, Long brandId) {
-        Optional<PriceEntity> entityPrices = this.priceJpaRepository.findApplicablePrice(applicationDate, productId, brandId);
-        return entityPrices.isPresent() ? PriceMapper.getInstance().toDTO(entityPrices.get()) : null;
+        List<PriceEntity> entityPrice = this.priceJpaRepository.findApplicablePrice(applicationDate, productId, brandId);
+        return CollectionUtils.isEmpty(entityPrice) ? null: PriceMapper.getInstance().toDTO(entityPrice.get(0));
     }
 
 }

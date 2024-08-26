@@ -19,6 +19,9 @@ public class PriceMapper {
 
 
     public Price toDTO(PriceEntity priceEntity) {
+        if (priceEntity == null) {
+            return null;
+        }
         return Price.builder()
                     .productId(priceEntity.getProductId())
                     .brandId(priceEntity.getBrandId())

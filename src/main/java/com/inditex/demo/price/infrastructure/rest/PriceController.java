@@ -14,7 +14,7 @@ import com.inditex.demo.price.application.find.exceptions.ExceptionControllerPri
 import com.inditex.demo.price.application.find.exceptions.ExceptionControllerPriceParamException;
 import com.inditex.demo.price.application.find.validation.FindApplicablePriceProxy;
 import com.inditex.demo.price.domain.dto.Price;
-import com.inditex.demo.shared.application.ApiResponse;
+import com.inditex.demo.shared.infrastructure.ApiResponse;
 
 @RestController
 @RequestMapping("/prices")

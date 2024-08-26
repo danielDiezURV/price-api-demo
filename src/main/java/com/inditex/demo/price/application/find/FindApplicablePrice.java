@@ -4,9 +4,10 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.ResponseEntity;
 
-import com.inditex.demo.price.application.find.exceptions.*;
+import com.inditex.demo.price.application.find.exceptions.ExceptionControllerPriceNotFoundException;
+import com.inditex.demo.price.application.find.exceptions.ExceptionControllerPriceParamException;
 import com.inditex.demo.price.domain.dto.Price;
-import com.inditex.demo.shared.application.ApiResponse;
+import com.inditex.demo.shared.infrastructure.ApiResponse;
 
 
 public interface FindApplicablePrice {

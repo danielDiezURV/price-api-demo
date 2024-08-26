@@ -1,4 +1,4 @@
-package com.inditex.demo.shared.application;
+package com.inditex.demo.shared.infrastructure;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

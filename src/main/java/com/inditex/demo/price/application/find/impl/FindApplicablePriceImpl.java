@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import com.inditex.demo.price.application.find.FindApplicablePrice;
 import com.inditex.demo.price.domain.dto.Price;
 import com.inditex.demo.price.domain.repository.PriceRepository;
-import com.inditex.demo.shared.application.ApiError;
-import com.inditex.demo.shared.application.ApiResponse;
-import com.inditex.demo.shared.application.ResponseEntityHandler;
+import com.inditex.demo.shared.infrastructure.ApiError;
+import com.inditex.demo.shared.infrastructure.ApiResponse;
+import com.inditex.demo.shared.infrastructure.ResponseEntityHandler;
 
 @Service
 public class FindApplicablePriceImpl implements FindApplicablePrice {

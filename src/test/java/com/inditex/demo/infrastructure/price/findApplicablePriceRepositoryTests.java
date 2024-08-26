@@ -1,7 +1,8 @@
 package com.inditex.demo.infrastructure.price;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -47,7 +48,7 @@ public class findApplicablePriceRepositoryTests extends PriceApiDemoApplicationT
                 Long productId = 35455L;
                 Long brandId = 1L;
                 LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0, 0);
-                Optional<PriceEntity> mockPriceResponse = Optional.of(mockPrice());
+                List<PriceEntity> mockPriceResponse = Arrays.asList(mockPrice());
                 // Mock
                 when(this.priceJpaRepository.findApplicablePrice(applicationDate, productId, brandId)).thenReturn(mockPriceResponse);
                 // When
@@ -72,10 +73,9 @@ public class findApplicablePriceRepositoryTests extends PriceApiDemoApplicationT
                 // Given
                 Long productId = 35455L;
                 Long brandId = 1L;
-                LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0, 0);
-                Optional<PriceEntity> mockPriceResponse = Optional.empty();
+                LocalDateTime applicationDate = LocalDateTime.of(2020, 1, 14, 10, 0, 0);
                 // Mock
-                when(this.priceJpaRepository.findApplicablePrice(applicationDate, productId, brandId)).thenReturn(mockPriceResponse);
+                when(this.priceJpaRepository.findApplicablePrice(applicationDate, productId, brandId)).thenReturn(null);
                 // When
                 Price price = priceRepositoryimpl.findApplicablePrice(applicationDate, productId, brandId);
                 // Then

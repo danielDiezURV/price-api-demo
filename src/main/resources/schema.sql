@@ -1,4 +1,5 @@
 CREATE TABLE PRICES (
+    id SERIAL PRIMARY KEY,
     brand_id INT,
     start_date TIMESTAMP,
     end_date TIMESTAMP,

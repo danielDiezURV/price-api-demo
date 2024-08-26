@@ -11,7 +11,7 @@
 	<groupId>com.inditex</groupId>
 	<artifactId>price-api-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>price-api-demo</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>

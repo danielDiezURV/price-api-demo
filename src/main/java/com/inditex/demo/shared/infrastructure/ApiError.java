@@ -1,4 +1,4 @@
-package com.inditex.demo.shared.application;
+package com.inditex.demo.shared.infrastructure;
 
 import lombok.Builder;
 import lombok.Getter;
