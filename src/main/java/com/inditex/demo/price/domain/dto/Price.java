@@ -4,9 +4,8 @@ import java.time.LocalDateTime;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
-@Getter @Setter @Builder
+@Getter @Builder
 public class Price {
     private Long productId;
     private Long brandId;
@@ -15,4 +14,5 @@ public class Price {
     private LocalDateTime endDate;
     private Double price;
     private String currency;
+    
 }

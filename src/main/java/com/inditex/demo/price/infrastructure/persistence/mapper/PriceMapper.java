@@ -7,10 +7,6 @@ public class PriceMapper {
 
     private static PriceMapper instance;
 
-    public static Price toPrice(PriceEntity get) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     private PriceMapper() {
     }
 
@@ -23,6 +19,9 @@ public class PriceMapper {
 
 
     public Price toDTO(PriceEntity priceEntity) {
+        if (priceEntity == null) {
+            return null;
+        }
         return Price.builder()
                     .productId(priceEntity.getProductId())
                     .brandId(priceEntity.getBrandId())
