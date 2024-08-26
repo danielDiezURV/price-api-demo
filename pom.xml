@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>price-api-demo</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Inditex technical exercice</description>
 	<url/>
 	<licenses>
 		<license/>

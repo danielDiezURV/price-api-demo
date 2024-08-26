@@ -13,9 +13,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Price Check\", () => { \r",
-							"    pm.expect(pm.response.json().data.price).to.equal(35.5); \r",
-							"});"
+                            "const expectedPrice = 35.5;",
+                            "const actualPrice = pm.response.json().data.price;",
+                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
+                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
+                            "});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -61,9 +63,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Price Check\", () => { \r",
-							"    pm.expect(pm.response.json().data.price).to.equal(25.45); \r",
-							"});"
+                            "const expectedPrice = 25.45;",
+                            "const actualPrice = pm.response.json().data.price;",
+                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
+                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
+                            "});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -109,9 +113,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Price Check\", () => { \r",
-							"    pm.expect(pm.response.json().data.price).to.equal(35.5); \r",
-							"});"
+                            "const expectedPrice = 35.5;",
+                            "const actualPrice = pm.response.json().data.price;",
+                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
+                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
+                            "});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -157,9 +163,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Price Check\", () => { \r",
-							"    pm.expect(pm.response.json().data.price).to.equal(30.5); \r",
-							"});"
+                            "const expectedPrice = 30.5;",
+                            "const actualPrice = pm.response.json().data.price;",
+                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
+                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
+                            "});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -205,9 +213,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Price Check\", () => { \r",
-							"    pm.expect(pm.response.json().data.price).to.equal(38.95); \r",
-							"});"
+                            "const expectedPrice = 38.95;",
+                            "const actualPrice = pm.response.json().data.price;",
+                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
+                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
+                            "});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -253,9 +263,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Price Check\", () => { \r",
-							"    pm.expect(pm.response.json().title).to.equal(\"Price Not found Exception\"); \r",
-							"});"
+							"const expectedPrice = \"Price Not found Exception\";",
+                            "const actualPrice = pm.response.json().title;",
+                            "pm.test(`Price Check: expected error -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
+                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
+                            "});"
 						],
 						"type": "text/javascript",
 						"packages": {}
