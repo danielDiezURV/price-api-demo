@@ -5,13 +5,11 @@ Este proyecto es una aplicación de demostración de Spring Boot para gestionar 
 ## Tabla de Contenidos
 
 - [Enunciado](#enunciado)
-- [Resultados](#resultados)
 - [Tecnologías](#tecnologías)
 - [Configuración](#configuración)
 - [Ejecución de la Aplicación](#ejecución-de-la-aplicación)
 - [Ejecución de Tests](#ejecución-de-tests)
-- [Endpoints de la API](#endpoints-de-la-api)
-- [Licencia](#licencia)
+- [Resultados](#resultados)
 
 ## Enunciado
 
