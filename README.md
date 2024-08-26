@@ -137,7 +137,7 @@ Este proyecto utiliza las siguientes tecnologías:
 1. Clona el repositorio:
 
     ```sh
-    git clone https://github.com/your-username/price-api-demo.git
+    git clone https://github.com/danielDiezURV/price-api-demo.git
     cd price-api-demo
     ```
 
