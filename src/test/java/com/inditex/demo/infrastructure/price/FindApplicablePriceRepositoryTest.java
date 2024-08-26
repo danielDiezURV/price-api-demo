@@ -17,7 +17,7 @@ import com.inditex.demo.price.infrastructure.persistence.entity.PriceEntity;
 import com.inditex.demo.price.infrastructure.persistence.repository.PriceRepositoryImpl;
 import com.inditex.demo.price.infrastructure.persistence.repository.jpa.PriceJpaRepository;
 
-public class FindApplicablePriceRepositoryTests extends PriceApiDemoApplicationTests {
+public class FindApplicablePriceRepositoryTest extends PriceApiDemoApplicationTests {
     
         private PriceJpaRepository priceJpaRepository;
         private PriceRepositoryImpl priceRepositoryimpl;

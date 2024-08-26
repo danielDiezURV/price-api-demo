@@ -27,7 +27,7 @@ import com.inditex.demo.price.infrastructure.persistence.entity.PriceEntity;
 import com.inditex.demo.price.infrastructure.persistence.mapper.PriceMapper;
 import com.inditex.demo.shared.infrastructure.ApiResponse;
 
-public class FindApplicablePriceControllerTests extends PriceApiDemoApplicationTests {
+public class FindApplicablePriceControllerTest extends PriceApiDemoApplicationTests {
     
         private PriceRepository priceRepository;
         private FindApplicablePriceImpl findApplicablePriceImpl;
