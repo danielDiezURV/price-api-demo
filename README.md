@@ -144,7 +144,7 @@ Este proyecto utiliza las siguientes tecnologías:
 2. Instala las dependencias y construye el proyecto:
 
     ```sh
-    mvn clean compile
+    mvn clean package
     ```
 
 ## Ejecución de la Aplicación
