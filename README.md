@@ -93,7 +93,7 @@ Este proyecto utiliza las siguientes tecnologías:
     mvn spring-boot:run
     ```
 
-2. La aplicación estará disponible en `http://localhost:8080`.
+2. La aplicación estará disponible en `http://localhost:8080/swagger-ui/index.html`.
 
 ### Opción 2: Docker
 
@@ -109,7 +109,7 @@ Este proyecto utiliza las siguientes tecnologías:
     docker run -p 8080:8080 price-api-demo
     ```
 
-3. La aplicación estará disponible en `http://localhost:8080`.
+3. La aplicación estará disponible en `http://localhost:8080/swagger-ui/index.html`.
 
 ## Ejecución de Tests
 
