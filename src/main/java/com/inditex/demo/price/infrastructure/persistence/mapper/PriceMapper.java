@@ -1,5 +1,7 @@
 package com.inditex.demo.price.infrastructure.persistence.mapper;
 
+import java.util.List;
+
 import com.inditex.demo.price.domain.dto.Price;
 import com.inditex.demo.price.infrastructure.persistence.entity.PriceEntity;
 
@@ -30,6 +32,14 @@ public class PriceMapper {
                     .priceList(priceEntity.getPriceList())
                     .price(priceEntity.getPrice())
                     .currency(priceEntity.getCurrency())
+                    .priority(priceEntity.getPriority())
                     .build();
+    }
+
+    public List<Price> toDTO(List<PriceEntity> priceEntity) {
+        if (priceEntity == null) {
+            return null;
+        }
+        return priceEntity.stream().map(this::toDTO).toList();
     }
 }

@@ -1,34 +1,42 @@
 package com.inditex.demo.shared.infrastructure;
 
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.ServletWebRequest;
-import org.springframework.web.context.request.WebRequest;
-
-import com.inditex.demo.price.application.find.exceptions.ExceptionControllerPriceNotFoundException;
-import com.inditex.demo.price.application.find.exceptions.ExceptionControllerPriceParamException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler(ExceptionControllerPriceParamException.class)
-    public ResponseEntity<Object> handlePriceParamException(ExceptionControllerPriceParamException ex, WebRequest request) {
-        return new ResponseEntity<>(this.generateApiError("Price null param Exception", ex.getMessage(), request), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ApiResponse<ApiError>> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
+        String parameterName = ex.getName();
+        String parameterType = Optional.ofNullable(ex.getRequiredType()).map(Class::getSimpleName).orElse("unknown");
+        String message = String.format("Parameter '%s' should be of type '%s'", parameterName, parameterType);
+
+        ApiError error = ApiError.builder()
+                                 .title("Invalid Parameter Type")
+                                 .detail(message)
+                                 .url("http://localhost:8080/prices/")
+                                 .build();
+        return ResponseEntityHandler.generateError(error, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(ExceptionControllerPriceNotFoundException.class)
-    public ResponseEntity<Object> handlePriceNotFoundException(ExceptionControllerPriceNotFoundException ex, WebRequest request) {
-        return new ResponseEntity<>(this.generateApiError("Price Not found Exception", ex.getMessage(), request), HttpStatus.NOT_FOUND);
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<ApiResponse<ApiError>> handleMissingServletRequestParameterException(MissingServletRequestParameterException ex) {
+        String parameterName = ex.getParameterName();
+        String message = String.format("Missing required parameter: '"+parameterName+"'");
+
+        ApiError error = ApiError.builder()
+                                 .title("Missing Required Parameter")
+                                 .detail(message)
+                                 .url("http://localhost:8080/prices/")
+                                 .build();
+        return ResponseEntityHandler.generateError(error, HttpStatus.BAD_REQUEST);
     }
 
-
-    private ApiError generateApiError(String title, String detail, WebRequest request) {
-        return ApiError.builder()
-                       .title(title)
-                       .detail(detail)
-                       .url(((ServletWebRequest)request).getRequest().getRequestURI())
-                       .build();
-    }
 }

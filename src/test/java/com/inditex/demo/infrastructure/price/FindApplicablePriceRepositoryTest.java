@@ -7,6 +7,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -22,7 +23,7 @@ public class FindApplicablePriceRepositoryTest extends PriceApiDemoApplicationTe
         private PriceJpaRepository priceJpaRepository;
         private PriceRepositoryImpl priceRepositoryimpl;
 
-        private PriceEntity mockPrice() {
+        private PriceEntity mockPriceEntity() {
                 return PriceEntity.builder()
                         .id(1L)
                         .brandId(1L)
@@ -42,25 +43,30 @@ public class FindApplicablePriceRepositoryTest extends PriceApiDemoApplicationTe
                 this.priceRepositoryimpl = new PriceRepositoryImpl(priceJpaRepository);
         }
         
+        @DisplayName("Test Repository findApplicablePrice OK")
         @Test
         public void findApplicablePriceOK() {
                 // Given
                 Long productId = 35455L;
                 Long brandId = 1L;
                 LocalDateTime applicationDate = LocalDateTime.of(2020, 6, 14, 10, 0, 0);
-                List<PriceEntity> mockPriceResponse = Arrays.asList(mockPrice());
+                PriceEntity mockPrice = mockPriceEntity();
+                List<PriceEntity> mockPriceResponse = Arrays.asList(mockPrice);
                 // Mock
                 when(this.priceJpaRepository.findApplicablePrice(applicationDate, productId, brandId)).thenReturn(mockPriceResponse);
                 // When
-                Price price = priceRepositoryimpl.findApplicablePrice(applicationDate, productId, brandId);
+                List<Price> prices = priceRepositoryimpl.findApplicablePrice(applicationDate, productId, brandId);
+
+                Price price = prices.get(0);
                 // Then
-                assertEquals(price.getBrandId(), mockPrice().getBrandId());
-                assertEquals(price.getStartDate(), mockPrice().getStartDate());
-                assertEquals(price.getEndDate(), mockPrice().getEndDate());
-                assertEquals(price.getPriceList(), mockPrice().getPriceList());
-                assertEquals(price.getProductId(), mockPrice().getProductId());
-                assertEquals(price.getPrice(), mockPrice().getPrice());
-                assertEquals(price.getCurrency(), mockPrice().getCurrency());
+                assertEquals(price.getBrandId(), mockPrice.getBrandId());
+                assertEquals(price.getStartDate(), mockPrice.getStartDate());
+                assertEquals(price.getEndDate(), mockPrice.getEndDate());
+                assertEquals(price.getPriceList(), mockPrice.getPriceList());
+                assertEquals(price.getProductId(), mockPrice.getProductId());
+                assertEquals(price.getPrice(), mockPrice.getPrice());
+                assertEquals(price.getCurrency(), mockPrice.getCurrency());
+                assertEquals(price.getPriority(), mockPrice.getPriority());
 
                 assertEquals(price.getProductId(), productId);
                 assertEquals(price.getBrandId(), brandId);
@@ -68,6 +74,7 @@ public class FindApplicablePriceRepositoryTest extends PriceApiDemoApplicationTe
                 assertTrue(applicationDate.isBefore(price.getEndDate()) || applicationDate.isEqual(price.getEndDate()));
         }
 
+        @DisplayName("Test Repository findApplicablePrice NotFound")     
         @Test
         public void findApplicablePriceNotFound() {
                 // Given
@@ -77,8 +84,8 @@ public class FindApplicablePriceRepositoryTest extends PriceApiDemoApplicationTe
                 // Mock
                 when(this.priceJpaRepository.findApplicablePrice(applicationDate, productId, brandId)).thenReturn(null);
                 // When
-                Price price = priceRepositoryimpl.findApplicablePrice(applicationDate, productId, brandId);
+                List<Price> prices = priceRepositoryimpl.findApplicablePrice(applicationDate, productId, brandId);
                 // Then
-                assertEquals(price, null);
+                assertEquals(prices, null);
         }
 }

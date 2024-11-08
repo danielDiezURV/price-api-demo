@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "122f19e3-5c06-4f8b-83b3-3d43899c01fb",
+		"_postman_id": "e8b4001f-b0e3-4103-a789-f9822ce7e50c",
 		"name": "PRICE-API-DEMO",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37922902"
 	},
 	"item": [
@@ -13,11 +13,13 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-                            "const expectedPrice = 35.5;",
-                            "const actualPrice = pm.response.json().data.price;",
-                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
-                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
-                            "});"
+							"\r",
+							"pm.test(\"Price Check\", () => { \r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.expect(pm.response.json().data.price).to.equal(35.5); \r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -63,11 +65,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-                            "const expectedPrice = 25.45;",
-                            "const actualPrice = pm.response.json().data.price;",
-                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
-                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
-                            "});"
+							"pm.test(\"Price Check\", () => { \r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.expect(pm.response.json().data.price).to.equal(25.45); \r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -113,11 +116,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-                            "const expectedPrice = 35.5;",
-                            "const actualPrice = pm.response.json().data.price;",
-                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
-                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
-                            "});"
+							"pm.test(\"Price Check\", () => { \r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.expect(pm.response.json().data.price).to.equal(35.5); \r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -163,11 +167,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-                            "const expectedPrice = 30.5;",
-                            "const actualPrice = pm.response.json().data.price;",
-                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
-                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
-                            "});"
+							"pm.test(\"Price Check\", () => { \r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.expect(pm.response.json().data.price).to.equal(30.5); \r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -213,11 +218,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-                            "const expectedPrice = 38.95;",
-                            "const actualPrice = pm.response.json().data.price;",
-                            "pm.test(`Price Check: expected -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
-                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
-                            "});"
+							"pm.test(\"Price Check\", () => { \r",
+							"    pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"    });\r",
+							"    pm.expect(pm.response.json().data.price).to.equal(38.95); \r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -263,11 +269,23 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const expectedPrice = \"Price Not found Exception\";",
-                            "const actualPrice = pm.response.json().title;",
-                            "pm.test(`Price Check: expected error -> ${expectedPrice}, got -> ${actualPrice}`, () => {",
-                            "    pm.expect(actualPrice).to.equal(expectedPrice);",
-                            "});"
+							"pm.test(\"Price not found error\", () => { \r",
+							"    pm.test(\"Status code is 404\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"    pm.expect(pm.response.json().error.title).to.equal(\"Price not found\"); \r",
+							"    pm.expect(pm.response.json().error.detail).to.equal(\"Price not found for product 123 and brand 1 at date 2020-06-16T21:00\"); \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -296,6 +314,154 @@
 						{
 							"key": "productId",
 							"value": "123"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 7: Missing productId parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Missing required parameter error\", () => { \r",
+							"    pm.test(\"Status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"    pm.expect(pm.response.json().error.title).to.equal(\"Missing Required Parameter\"); \r",
+							"    pm.expect(pm.response.json().error.detail).to.equal(\"Missing required parameter: 'productId'\"); \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/prices/?applicationDate=2020-06-16T21:00:00Z&brandId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"prices",
+						""
+					],
+					"query": [
+						{
+							"key": "applicationDate",
+							"value": "2020-06-16T21:00:00Z"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 8: Missing applicationDate parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Missing Required Parameter error\", () => { \r",
+							"    pm.test(\"Status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"    pm.expect(pm.response.json().error.title).to.equal(\"Missing Required Parameter\"); \r",
+							"    pm.expect(pm.response.json().error.detail).to.equal(\"Missing required parameter: 'applicationDate'\"); \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/prices/?productId=35455&brandId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"prices",
+						""
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "35455"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 9: Mismatch type applicationDate parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Invalid Parameter Type error\", () => { \r",
+							"    pm.test(\"Status code is 400\", function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });   \r",
+							"    pm.expect(pm.response.json().error.title).to.equal(\"Invalid Parameter Type\"); \r",
+							"    pm.expect(pm.response.json().error.detail).to.equal(\"Parameter 'applicationDate' should be of type 'LocalDateTime'\"); \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/prices/?applicationDate=2020-06-14&productId=35455&brandId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"prices",
+						""
+					],
+					"query": [
+						{
+							"key": "applicationDate",
+							"value": "2020-06-14"
+						},
+						{
+							"key": "productId",
+							"value": "35455"
 						},
 						{
 							"key": "brandId",

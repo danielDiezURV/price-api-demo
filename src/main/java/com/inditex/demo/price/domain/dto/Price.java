@@ -14,5 +14,5 @@ public class Price {
     private LocalDateTime endDate;
     private Double price;
     private String currency;
-    
+    private Integer priority;
 }

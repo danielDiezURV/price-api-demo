@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import com.inditex.demo.price.domain.dto.Price;
 import com.inditex.demo.price.domain.repository.PriceRepository;
@@ -24,9 +23,9 @@ public class PriceRepositoryImpl implements PriceRepository {
     }
 
     @Override
-    public Price findApplicablePrice(LocalDateTime applicationDate, Long productId, Long brandId) {
+    public List<Price> findApplicablePrice(LocalDateTime applicationDate, Long productId, Long brandId) {
         List<PriceEntity> entityPrice = this.priceJpaRepository.findApplicablePrice(applicationDate, productId, brandId);
-        return CollectionUtils.isEmpty(entityPrice) ? null: PriceMapper.getInstance().toDTO(entityPrice.get(0));
+        return PriceMapper.getInstance().toDTO(entityPrice);
     }
 
 }
