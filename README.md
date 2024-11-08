@@ -1,19 +1,18 @@
 # Price API Demo
+This project is a Spring Boot demo application to manage and retrieve product prices. It includes a REST API to query prices based on the application date, product ID, and brand ID.
 
-Este proyecto es una aplicación de demostración de Spring Boot para gestionar y recuperar precios de productos. Incluye una API REST para consultar precios basados en la fecha de aplicación, el ID del producto y el ID de la cadena.
+## Table of Contents
 
-## Tabla de Contenidos
+- [Statement](#statement)
+- [Technologies](#technologies)
+- [Configuration](#configuration)
+- [Running the Application](#running-the-application)
+- [Running Tests](#running-tests)
+- [Results](#results)
 
-- [Enunciado](#enunciado)
-- [Tecnologías](#tecnologías)
-- [Configuración](#configuración)
-- [Ejecución de la Aplicación](#ejecución-de-la-aplicación)
-- [Ejecución de Tests](#ejecución-de-tests)
-- [Resultados](#resultados)
+## Statement
 
-## Enunciado
-
-En la base de datos de comercio electrónico de la compañía disponemos de la tabla PRICES que refleja el precio final (pvp) y la tarifa que aplica a un producto de una cadena entre unas fechas determinadas. A continuación se muestra un ejemplo de la tabla con los campos relevantes:
+In the company's e-commerce database, we have the PRICES table that reflects the final price (pvp) and the rate that applies to a product of a brand between certain dates. Below is an example of the table with the relevant fields:
 
 ### PRICES
 
@@ -24,129 +23,130 @@ En la base de datos de comercio electrónico de la compañía disponemos de la t
 | 1        | 2020-06-15-00.00.00  | 2020-06-15-11.00.00 | 3          | 35455      | 1        | 30.50 | EUR  |
 | 1        | 2020-06-15-16.00.00  | 2020-12-31-23.59.59 | 4          | 35455      | 1        | 38.95 | EUR  |
 
-### Campos:
+### Fields:
 
-- **BRAND_ID**: foreign key de la cadena del grupo (1 = ZARA).
-- **START_DATE**, **END_DATE**: rango de fechas en el que aplica el precio tarifa indicado.
-- **PRICE_LIST**: Identificador de la tarifa de precios aplicable.
-- **PRODUCT_ID**: Identificador código de producto.
-- **PRIORITY**: Desambiguador de aplicación de precios. Si dos tarifas coinciden en un rango de fechas se aplica la de mayor prioridad (mayor valor numérico).
-- **PRICE**: precio final de venta.
-- **CURR**: iso de la moneda.
+- **BRAND_ID**: foreign key of the brand group (1 = ZARA).
+- **START_DATE**, **END_DATE**: date range in which the indicated rate price applies.
+- **PRICE_LIST**: Identifier of the applicable price rate.
+- **PRODUCT_ID**: Product code identifier.
+- **PRIORITY**: Price application disambiguator. If two rates coincide in a date range, the one with the highest priority (highest numerical value) is applied.
+- **PRICE**: final sale price.
+- **CURR**: currency ISO code.
 
-### Requisitos:
+### Requirements:
 
-Construir una aplicación/servicio en SpringBoot que provea un endpoint REST de consulta tal que:
+Build a SpringBoot application/service that provides a REST query endpoint such that:
 
-- Acepte como parámetros de entrada: fecha de aplicación, identificador de producto, identificador de cadena.
-- Devuelva como datos de salida: identificador de producto, identificador de cadena, tarifa a aplicar, fechas de aplicación y precio final a aplicar.
+- Accepts as input parameters: application date, product identifier, brand identifier.
+- Returns as output data: product identifier, brand identifier, applicable rate, application dates, and final price to apply.
 
-Se debe utilizar una base de datos en memoria (tipo H2) e inicializar con los datos del ejemplo, (se pueden cambiar el nombre de los campos y añadir otros nuevos si se quiere, elegir el tipo de dato que se considere adecuado para los mismos).
+An in-memory database (H2 type) should be used and initialized with the example data (field names can be changed and new ones added if desired, choose the appropriate data type for them).
 
-Desarrollar unos test al endpoint REST que validen las siguientes peticiones al servicio con los datos del ejemplo:
+Develop tests for the REST endpoint that validate the following service requests with the example data:
 
-- Test 1: petición a las 10:00 del día 14 del producto 35455 para la brand 1 (ZARA)
-- Test 2: petición a las 16:00 del día 14 del producto 35455 para la brand 1 (ZARA)
-- Test 3: petición a las 21:00 del día 14 del producto 35455 para la brand 1 (ZARA)
-- Test 4: petición a las 10:00 del día 15 del producto 35455 para la brand 1 (ZARA)
-- Test 5: petición a las 21:00 del día 16 del producto 35455 para la brand 1 (ZARA)
+- Test 1: request at 10:00 on the 14th for product 35455 for brand 1 (ZARA)
+- Test 2: request at 16:00 on the 14th for product 35455 for brand 1 (ZARA)
+- Test 3: request at 21:00 on the 14th for product 35455 for brand 1 (ZARA)
+- Test 4: request at 10:00 on the 15th for product 35455 for brand 1 (ZARA)
+- Test 5: request at 21:00 on the 16th for product 35455 for brand 1 (ZARA)
+## Technologies
 
-## Tecnologías
+This project uses the following technologies:
 
-Este proyecto utiliza las siguientes tecnologías:
+- **Java 17**: Programming language used to develop the application.
+- **Spring Boot**: Framework for building Java applications based on Spring.
+- **H2 Database**: In-memory database used to store example data.
+- **Mockito**: Unit testing framework for Java.
+- **Maven**: Project and dependency management tool.
 
-- **Java 17**: Lenguaje de programación utilizado para desarrollar la aplicación.
-- **Spring Boot**: Framework para construir aplicaciones Java basadas en Spring.
-- **H2 Database**: Base de datos en memoria utilizada para almacenar los datos de ejemplo.
-- **Mockito**: Framework de pruebas unitarias para Java.
-- **Maven**: Herramienta de gestión de proyectos y dependencias.
+## Configuration
 
-## Configuración
+### Prerequisites
 
-### Prerrequisitos
+- **Java 17** or higher
+- **Maven 3.6.0** or higher
 
-- **Java 17** o superior
-- **Maven 3.6.0** o superior
+### Installation
 
-### Instalación
+1. Clone the repository:
 
-1. Clona el repositorio:
+  ```sh
+  git clone https://github.com/danielDiezURV/price-api-demo.git
+  cd price-api-demo
+  ```
 
-    ```sh
-    git clone https://github.com/danielDiezURV/price-api-demo.git
-    cd price-api-demo
-    ```
+2. Install dependencies and build the project:
 
-2. Instala las dependencias y construye el proyecto:
+  ```sh
+  mvn clean package
+  ```
 
-    ```sh
-    mvn clean package
-    ```
+## Running the Application
 
-## Ejecución de la Aplicación
+### Option 1: Spring Boot
 
-### Opción 1: Spring Boot
+1. Start the Spring Boot application:
 
-1. Inicia la aplicación Spring Boot:
+  ```sh
+  mvn spring-boot:run
+  ```
 
-    ```sh
-    mvn spring-boot:run
-    ```
+2. The application will be available at `http://localhost:8080/swagger-ui/index.html`.
 
-2. La aplicación estará disponible en `http://localhost:8080/swagger-ui/index.html`.
+### Option 2: Docker
+With Docker engine running:
 
-### Opción 2: Docker
+1. Build the Docker image:
 
-1. Construye la imagen Docker:
+  ```sh
+  docker build -t price-api-demo .
+  ```
 
-    ```sh
-    docker build -t price-api-demo .
-    ```
+2. Run the Docker container:
 
-2. Ejecuta el contenedor Docker:
+  ```sh
+  docker run -p 8080:8080 price-api-demo
+  ```
 
-    ```sh
-    docker run -p 8080:8080 price-api-demo
-    ```
+3. The application will be available at `http://localhost:8080/swagger-ui/index.html`.
 
-3. La aplicación estará disponible en `http://localhost:8080/swagger-ui/index.html`.
+## Running Tests
 
-## Ejecución de Tests
+### Unit Tests
 
-### Tests Unitarios
-
-Para ejecutar los tests unitarios, usa el siguiente comando:
+To run the unit tests, use the following command:
 
 ```sh
 mvn test
-``` 
-### Tests de Integración
+```
+### Integration Tests
+With Price API demo running:
 
-Para ejecutar los tests de integración usando Postman, sigue estos pasos:
+To run the integration tests using Postman, follow these steps:
 
-1. Abre Postman.
-2. Importa la colección de pruebas de integración desde el archivo `postman_collection.json` que se encuentra en el directorio raíz del proyecto.
-3. Ejecuta la colección de pruebas.
+1. Open Postman.
+2. Import the integration test collection from the `postman_collection.json` file located in the root directory of the project.
+3. Run the test collection.
 
-Alternativamente, puedes usar la línea de comandos para ejecutar la colección de Postman usando Newman:
+Alternatively, you can use the command line to run the Postman collection using Newman:
 
-1. Instala Newman si no lo tienes instalado:
+1. Install Newman if you don't have it installed:
 
-    ```sh
-    npm install -g newman
-    ```
+  ```sh
+  npm install -g newman
+  ```
 
-2. Ejecuta la colección de Postman:
+2. Run the Postman collection:
 
-    ```sh
-    newman run priceTests.postman_collection.json
-    ```
+  ```sh
+  newman run priceTests.postman_collection.json
+  ```
 
-Esto ejecutará todas las pruebas definidas en la colección de Postman y mostrará los resultados en la terminal.
+This will run all the tests defined in the Postman collection and display the results in the terminal.
 
-## Resultados
+## Results
 
-### Test 1: Petición a las 10:00 del día 14 del producto 35455 para la brand 1 (ZARA)
+### Test 1: Request at 10:00 on the 14th for product 35455 for brand 1 (ZARA)
 ```json
 {
   "productId": 35455,
@@ -158,7 +158,7 @@ Esto ejecutará todas las pruebas definidas en la colección de Postman y mostra
   "currency": "EUR"
 }
 ```
-### Test 2: Petición a las 16:00 del día 14 del producto 35455 para la brand 1 (ZARA)
+### Test 2: Request at 16:00 on the 14th for product 35455 for brand 1 (ZARA)
 ```json
 {
   "productId": 35455,
@@ -170,7 +170,7 @@ Esto ejecutará todas las pruebas definidas en la colección de Postman y mostra
   "currency": "EUR"
 }
 ```
-### Test 3: Petición a las 21:00 del día 14 del producto 35455 para la brand 1 (ZARA)
+### Test 3: Request at 21:00 on the 14th for product 35455 for brand 1 (ZARA)
 ```json
 {
   "productId": 35455,
@@ -182,7 +182,7 @@ Esto ejecutará todas las pruebas definidas en la colección de Postman y mostra
   "currency": "EUR"
 }
 ```
-### Test 4: Petición a las 10:00 del día 15 del producto 35455 para la brand 1 (ZARA)
+### Test 4: Request at 10:00 on the 15th for product 35455 for brand 1 (ZARA)
 ```json
 {
   "productId": 35455,
@@ -194,7 +194,7 @@ Esto ejecutará todas las pruebas definidas en la colección de Postman y mostra
   "currency": "EUR"
 }
 ```
-### Test 5: Petición a las 21:00 del día 16 del producto 35455 para la brand 1 (ZARA)
+### Test 5: Request at 21:00 on the 16th for product 35455 for brand 1 (ZARA)
 ```json
 {
   "productId": 35455,
@@ -205,4 +205,5 @@ Esto ejecutará todas las pruebas definidas en la colección de Postman y mostra
   "price": 38.95,
   "currency": "EUR"
 }
-```
+
+
