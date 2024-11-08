@@ -1,10 +1,11 @@
-package com.inditex.demo.price.application.find.exceptions;
+package com.inditex.demo.price.infrastructure.rest.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.inditex.demo.price.application.find.exceptions.PriceNotFoundException;
 import com.inditex.demo.shared.infrastructure.ApiError;
 import com.inditex.demo.shared.infrastructure.ApiResponse;
 import com.inditex.demo.shared.infrastructure.ResponseEntityHandler;
