@@ -1,6 +1,7 @@
 package com.inditex.demo.infrastructure.price;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,17 +60,17 @@ public class FindApplicablePriceRepositoryTest extends PriceApiDemoApplicationTe
 
                 Price price = prices.get(0);
                 // Then
-                assertEquals(price.getBrandId(), mockPrice.getBrandId());
-                assertEquals(price.getStartDate(), mockPrice.getStartDate());
-                assertEquals(price.getEndDate(), mockPrice.getEndDate());
-                assertEquals(price.getPriceList(), mockPrice.getPriceList());
-                assertEquals(price.getProductId(), mockPrice.getProductId());
-                assertEquals(price.getPrice(), mockPrice.getPrice());
-                assertEquals(price.getCurrency(), mockPrice.getCurrency());
-                assertEquals(price.getPriority(), mockPrice.getPriority());
+                assertEquals(mockPrice.getBrandId(), price.getBrandId());
+                assertEquals(mockPrice.getStartDate(), price.getStartDate());
+                assertEquals(mockPrice.getEndDate(), price.getEndDate());
+                assertEquals(mockPrice.getPriceList(), price.getPriceList());
+                assertEquals(mockPrice.getProductId(), price.getProductId());
+                assertEquals(mockPrice.getPrice(), price.getPrice());
+                assertEquals(mockPrice.getCurrency(), price.getCurrency());
+                assertEquals(mockPrice.getPriority() , price.getPriority());
 
-                assertEquals(price.getProductId(), productId);
-                assertEquals(price.getBrandId(), brandId);
+                assertEquals(productId, price.getProductId());
+                assertEquals(brandId, price.getBrandId());
                 assertTrue(applicationDate.isAfter(price.getStartDate()) || applicationDate.isEqual(price.getStartDate()));
                 assertTrue(applicationDate.isBefore(price.getEndDate()) || applicationDate.isEqual(price.getEndDate()));
         }
@@ -86,6 +87,6 @@ public class FindApplicablePriceRepositoryTest extends PriceApiDemoApplicationTe
                 // When
                 List<Price> prices = priceRepositoryimpl.findApplicablePrice(applicationDate, productId, brandId);
                 // Then
-                assertEquals(prices, null);
+                assertEquals(new ArrayList<>(), prices);
         }
 }

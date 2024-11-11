@@ -1,5 +1,6 @@
 package com.inditex.demo.price.infrastructure.persistence.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.inditex.demo.price.domain.dto.Price;
@@ -38,7 +39,7 @@ public class PriceMapper {
 
     public List<Price> toDTO(List<PriceEntity> priceEntity) {
         if (priceEntity == null) {
-            return null;
+            return new ArrayList<>();
         }
         return priceEntity.stream().map(this::toDTO).toList();
     }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inditex.demo.price.application.find.validation.FindApplicablePriceProxy;
+import com.inditex.demo.price.application.find.FindApplicablePrice;
 import com.inditex.demo.price.domain.dto.Price;
 import com.inditex.demo.shared.infrastructure.ApiResponse;
 import com.inditex.demo.shared.infrastructure.ResponseEntityHandler;
@@ -21,7 +21,7 @@ import com.inditex.demo.shared.infrastructure.ResponseEntityHandler;
 public class PriceController {
     
     @Autowired
-    private FindApplicablePriceProxy findApplicablePriceProxy;
+    private FindApplicablePrice findApplicablePrice;
 
     @GetMapping("/")
     public ResponseEntity<ApiResponse<Price>> getPrice(@RequestParam(value = "applicationDate", required = true) 
@@ -29,7 +29,7 @@ public class PriceController {
                                                        @RequestParam(value = "productId", required = true)  Long productId, 
                                                        @RequestParam(value = "brandId", required = true) Long brandId) {
         
-        Price price = findApplicablePriceProxy.get(applicationDate, productId, brandId);
+        Price price = findApplicablePrice.get(applicationDate, productId, brandId);
         ApiResponse<Price> response = new ApiResponse<>(price, "Price found for product " + productId + " and brand " + brandId + " at date " + applicationDate, null);
         return ResponseEntityHandler.generate(response, HttpStatus.OK);
     }

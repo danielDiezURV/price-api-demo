@@ -112,8 +112,8 @@ public class FindApplicablePriceControllerTest extends PriceApiDemoApplicationTe
                 ApiResponse<Price> apiResponse = objectMapper.readValue(jsonResponse, parametricType);
                 ApiError apiError = apiResponse.getError();
                 assertEquals(HttpStatus.NOT_FOUND.value(), mvcResult.getResponse().getStatus());
-                assertEquals(apiError.getTitle(), "Price not found");
-                assertEquals(apiError.getDetail(), "Price not found for product " + productId + " and brand " + brandId + " at date " + applicationDate);
+                assertEquals("Price not found", apiError.getTitle());
+                assertEquals("Price not found for product " + productId + " and brand " + brandId + " at date " + applicationDate, apiError.getDetail());
         }
 
 
@@ -134,8 +134,8 @@ public class FindApplicablePriceControllerTest extends PriceApiDemoApplicationTe
                 ApiResponse<Price> apiResponse = objectMapper.readValue(jsonResponse, parametricType);
                 ApiError apiError = apiResponse.getError();
                 assertEquals(HttpStatus.BAD_REQUEST.value(), mvcResult.getResponse().getStatus());
-                assertEquals(apiError.getTitle(), "Missing Required Parameter");
-                assertEquals(apiError.getDetail(), "Missing required parameter: 'applicationDate'");
+                assertEquals("Missing Required Parameter", apiError.getTitle());
+                assertEquals("Missing required parameter: 'applicationDate'", apiError.getDetail());
         }
 
 
@@ -156,8 +156,8 @@ public class FindApplicablePriceControllerTest extends PriceApiDemoApplicationTe
                 ApiResponse<Price> apiResponse = objectMapper.readValue(jsonResponse, parametricType);
                 ApiError apiError = apiResponse.getError();
                 assertEquals(HttpStatus.BAD_REQUEST.value(), mvcResult.getResponse().getStatus());
-                assertEquals(apiError.getTitle(), "Missing Required Parameter");
-                assertEquals(apiError.getDetail(), "Missing required parameter: 'brandId'");
+                assertEquals("Missing Required Parameter", apiError.getTitle());
+                assertEquals("Missing required parameter: 'brandId'", apiError.getDetail());
         }
 
 
@@ -178,8 +178,8 @@ public class FindApplicablePriceControllerTest extends PriceApiDemoApplicationTe
                 ApiResponse<Price> apiResponse = objectMapper.readValue(jsonResponse, parametricType);
                 ApiError apiError = apiResponse.getError();
                 assertEquals(HttpStatus.BAD_REQUEST.value(), mvcResult.getResponse().getStatus());
-                assertEquals(apiError.getTitle(), "Missing Required Parameter");
-                assertEquals(apiError.getDetail(), "Missing required parameter: 'productId'");
+                assertEquals("Missing Required Parameter", apiError.getTitle());
+                assertEquals("Missing required parameter: 'productId'", apiError.getDetail());
         }
 
 
@@ -201,7 +201,7 @@ public class FindApplicablePriceControllerTest extends PriceApiDemoApplicationTe
                 ApiResponse<Price> apiResponse = objectMapper.readValue(jsonResponse, parametricType);
                 ApiError apiError = apiResponse.getError();
                 assertEquals(HttpStatus.BAD_REQUEST.value(), mvcResult.getResponse().getStatus());
-                assertEquals(apiError.getTitle(), "Invalid Parameter Type");
-                assertEquals(apiError.getDetail(), "Parameter 'applicationDate' should be of type 'LocalDateTime'");
+                assertEquals("Invalid Parameter Type", apiError.getTitle());
+                assertEquals("Parameter 'applicationDate' should be of type 'LocalDateTime'", apiError.getDetail());
         }
 }
